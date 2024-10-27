@@ -11,13 +11,13 @@ class Maze:
     def write_to_csv(self, filename):
         """Writes the maze to a csv file named filename"""
         with open(filename, "w+") as file:
-            maze_writer = csv.writer(file)
+            maze_writer = csv.writer(file, dialect="unix")
             maze_writer.writerows(self.grid)
 
     def read_from_csv(self, filename):
         """Reads a maze from a csv file named filename"""
         with open(filename, "r") as file:
-            maze_reader = csv.reader(file)
+            maze_reader = csv.reader(file, dialect="unix")
             self.grid = []
             for row in maze_reader:
                 self.grid.append([int(e) for e in row])
@@ -26,6 +26,10 @@ class Maze:
         if isinstance(index, tuple) and len(index) == 2:
             row, col = index
             return self.grid[row][col]
+        else:
+            raise IndexError(
+                "number of indices doesn't match the dimensions of the grid"
+            )
 
     def __repr__(self) -> str:
         return self.grid.__repr__()
@@ -42,6 +46,7 @@ if __name__ == "__main__":
     m = Maze(maze_grid=maze)
     print(m)
     print(m[1, 2])
+    print(m[7, 7])
     print("write it to a file!")
     m.write_to_csv("test")
     print("read it back! ")
