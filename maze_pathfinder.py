@@ -67,7 +67,15 @@ def maze_pathfinder(maze: Maze, starting_position=(0, 0)):
 
 if __name__ == "__main__":
     m = Maze()
-    m.read_from_csv("test_maze")
-    print(m)
-    p = maze_pathfinder(m)
-    print(f"path: {p}")
+    test_mazes_files = [
+        "test_maze",
+        "test_maze2",
+        "test_large_maze",
+        "test_very_large_maze",
+    ]
+    for maze_filename in test_mazes_files:
+        print(maze_filename)
+        m.read_from_csv(maze_filename)
+        print(m)
+        p = maze_pathfinder(m)
+        print(f"path: {p}")
