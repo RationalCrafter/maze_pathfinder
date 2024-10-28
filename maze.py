@@ -31,6 +31,10 @@ class Maze:
                 "number of indices doesn't match the dimensions of the grid"
             )
 
+    def dimensions(self):
+        """Returns the dimensions of the maze"""
+        return len(self.grid), len(self.grid[0])
+
     def __repr__(self) -> str:
         s = "\n".join([" ".join(map(str, line)) for line in self.grid])
         return s
@@ -55,3 +59,4 @@ if __name__ == "__main__":
     a.read_from_csv("test")
     print("I'm like the previous guy now, look: ")
     print(a)
+    print(f"Here are my dimensions: {a.dimensions()}")
