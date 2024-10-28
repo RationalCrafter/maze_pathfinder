@@ -32,7 +32,8 @@ class Maze:
             )
 
     def __repr__(self) -> str:
-        return self.grid.__repr__()
+        s = "\n".join([" ".join(map(str, line)) for line in self.grid])
+        return s
 
 
 if __name__ == "__main__":
@@ -46,7 +47,7 @@ if __name__ == "__main__":
     m = Maze(maze_grid=maze)
     print(m)
     print(m[1, 2])
-    print(m[7, 7])
+    print(m[4, 4])
     print("write it to a file!")
     m.write_to_csv("test")
     print("read it back! ")
